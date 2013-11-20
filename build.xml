@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="CreateSRG" default="main" basedir=".">
-	<property name="src.dir" location="src" />
+	<property name="src.dir" location="src/main/java" />
 	<property name="build.dir" location="bin" />
-	<property name="dist.dir" location="dist" />
+	<property name="dist.dir" location="target" />
 	<property name="dist.jarname" value="CreateSRG.jar" />
 	<property name="lib.dir" location="lib" />
 	<property name="manifest.mainclass" value="Main" />
@@ -15,7 +15,7 @@
 
 	<target name="clean">
 		<delete dir="${build.dir}" failonerror="false" />
-		<delete dir="${dist.dir}" failonerror="false" />
+		<delete file="${dist.dir}/${dist.jarname}" failonerror="false" />
 	</target>
 
 	<target name="prepare" depends="clean">

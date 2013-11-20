@@ -4,4 +4,4 @@
 - GNU trove
 
 ### Other notes
-- Make sure to compile trove; the jar included in the zip only has the sources
+- Make sure to compile trove; the jar in the download I found only included the sources
