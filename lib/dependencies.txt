@@ -1,0 +1,7 @@
+### Dependencies
+- Google guava
+- ObjectWeb asm
+- GNU trove
+
+### Other notes
+- Make sure to compile trove; the jar included in the zip only has the sources

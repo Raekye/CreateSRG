@@ -570,7 +570,7 @@ public class Main {
 			// exception table entries are generated for a single catch block?
 			Map<LabelNode, TryBlock> tryCatchData = new HashMap<>();
 			
-			for(TryCatchBlockNode tcbn : mn.tryCatchBlocks) {
+			for(TryCatchBlockNode tcbn : (List<TryCatchBlockNode>) mn.tryCatchBlocks) {
 				if(tcbn.type == null) continue; // ignore finally blocks
 				
 				if(tryCatchData.containsKey(tcbn.handler))
@@ -589,11 +589,11 @@ public class Main {
 			}
 			
 			analyzer.visitCode();
-			for(TryCatchBlockNode tcbn : mn.tryCatchBlocks)
+			for(TryCatchBlockNode tcbn : (List<TryCatchBlockNode>) mn.tryCatchBlocks)
 				tcbn.accept(analyzer);
 			analyzer.visitMaxs(mn.maxStack, mn.maxLocals);
 			if(mn.localVariables != null)
-				for(LocalVariableNode lvn : mn.localVariables)
+				for(LocalVariableNode lvn : (List<LocalVariableNode>) mn.localVariables)
 					lvn.accept(analyzer);
 			
 			for(AbstractInsnNode in = mn.instructions.getFirst(); in != null; in = in.getNext()) {

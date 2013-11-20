@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project name="CreateSRG" default="main" basedir=".">
+	<property name="src.dir" location="src" />
+	<property name="build.dir" location="bin" />
+	<property name="dist.dir" location="dist" />
+	<property name="dist.jarname" value="CreateSRG.jar" />
+	<property name="lib.dir" location="lib" />
+	<property name="manifest.mainclass" value="Main" />
+
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="clean">
+		<delete dir="${build.dir}" failonerror="false" />
+		<delete dir="${dist.dir}" failonerror="false" />
+	</target>
+
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<target name="compile" depends="prepare" description="Compile">
+		<javac destdir="${build.dir}" classpathref="build.classpath" target="1.7" source="1.7" includeantruntime="false">
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+
+	<target name="package" depends="compile" description="Package">
+		<jar destfile="${dist.dir}/${dist.jarname}" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="${manifest.mainclass}" />
+			</manifest>
+			<zipgroupfileset dir="${lib.dir}" includes="*.jar" />
+		</jar>
+	</target>
+
+	<target name="main" depends="package" description="Main task">
+	</target>
+</project>
