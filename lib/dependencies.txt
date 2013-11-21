@@ -2,6 +2,7 @@
 - Google guava
 - ObjectWeb asm
 - GNU trove
+- JOpt Simple
 
 ### Other notes
 - Make sure to compile trove; the jar in the download I found only included the sources

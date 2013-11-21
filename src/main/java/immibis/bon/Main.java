@@ -45,6 +45,9 @@ import org.objectweb.asm.tree.TryCatchBlockNode;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
+
 
 public class Main {
 	
@@ -153,11 +156,33 @@ public class Main {
 	private static ClassLoader loader;
 	
 	public static void main(String[] args) throws Exception {
-		File libdir = new File(args[0]);
-		File mcfile = new File(args[1]);
-		File confdir = new File(args[2]);
-		String version = args[3];
-		String side = args[4];
+		OptionParser parser = new OptionParser();
+		parser.accepts("libdir", "e.g. ~/.minecraft/libraries (recursive)").withRequiredArg().required();
+		parser.accepts("mcfile", "e.g. ~/.minecraft/versions/1.7.2/1.7.2.jar").withRequiredArg().required();
+		parser.accepts("confdir", "target output folder for .srg and .exc files").withRequiredArg().required();
+		parser.accepts("version", "e.g. 1.7.2").withRequiredArg().required();
+		parser.accepts("side", "either client, server, or universal").withRequiredArg().required(); // universal?
+		parser.acceptsAll(Arrays.asList("help", "h", "?"), "show help").forHelp();
+
+		OptionSet options = null;
+		try {
+			options = parser.parse(args);
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			parser.printHelpOn(System.out);
+			return;
+		}
+
+		if (options.has("help")) {
+			parser.printHelpOn(System.out);
+			return;
+		}
+
+		File libdir = new File((String) options.valueOf("libdir"));
+		File mcfile = new File((String) options.valueOf("mcfile"));
+		File confdir = new File((String) options.valueOf("confdir"));
+		String version = (String) options.valueOf("version");
+		String side = (String) options.valueOf("side");
 		
 		System.out.println("Libraries: " + libdir);
 		System.out.println("MC: " + mcfile);
