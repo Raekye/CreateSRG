@@ -1,4 +1,6 @@
-class MethodIdentifier implements Comparable<MethodIdentifier> {
+package immibis.bon;
+
+public class MethodIdentifier implements Comparable<MethodIdentifier> {
 	public final String owner;
 	public final String name;
 	public final String desc;
@@ -20,7 +22,7 @@ class MethodIdentifier implements Comparable<MethodIdentifier> {
 	
 	@Override
 	public int hashCode() {
-		return desc.hashCode() ^ name.hashCode() ^ owner.hashCode();
+		return (desc.hashCode() * 31 + name.hashCode()) * 31 +  owner.hashCode();
 	}
 	
 	@Override
@@ -29,11 +31,11 @@ class MethodIdentifier implements Comparable<MethodIdentifier> {
 	}
 	
 	@Override
-	public int compareTo(MethodIdentifier arg0) {
-		int i = owner.compareTo(arg0.owner);
+	public int compareTo(MethodIdentifier other) {
+		int i = owner.compareTo(other.owner);
 		if(i != 0) return i;
-		i = name.compareTo(arg0.name);
+		i = name.compareTo(other.name);
 		if(i != 0) return i;
-		return desc.compareTo(arg0.desc);
+		return desc.compareTo(other.desc);
 	}
 }

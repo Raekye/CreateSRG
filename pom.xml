@@ -61,7 +61,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>Main</mainClass>
+              <mainClass>immibis.bon.Main</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -80,7 +80,7 @@
     </plugins>
     <resources>
       <resource>
-        <directory>src/main/java</directory>
+        <directory>resources</directory>
         <includes>
           <include>1.7.2.txt</include>
         </includes>

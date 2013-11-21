@@ -4,8 +4,9 @@
 	<property name="build.dir" location="bin" />
 	<property name="dist.dir" location="target" />
 	<property name="dist.jarname" value="CreateSRG.jar" />
+	<property name="resources.dir" location="resources" />
 	<property name="lib.dir" location="lib" />
-	<property name="manifest.mainclass" value="Main" />
+	<property name="manifest.mainclass" value="immibis.bon.Main" />
 
 	<path id="build.classpath">
 		<fileset dir="${lib.dir}">
@@ -35,7 +36,7 @@
 				<attribute name="Main-Class" value="${manifest.mainclass}" />
 			</manifest>
 			<zipgroupfileset dir="${lib.dir}" includes="*.jar" />
-			<zipfileset dir="${src.dir}" includes="1.7.2.txt" fullpath="1.7.2.txt" />
+			<zipfileset dir="${resources.dir}" includes="1.7.2.txt" fullpath="1.7.2.txt" />
 		</jar>
 	</target>
 
